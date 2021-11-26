@@ -1,7 +1,8 @@
-package ru.shanin.commwork.data
+package ru.shanin.commwork.data.repositoryimpl
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import ru.shanin.commwork.data.genPeopleInfo
 import ru.shanin.commwork.domain.entity.People
 import ru.shanin.commwork.domain.repository.PeopleRepository
 import kotlin.random.Random
@@ -27,7 +28,8 @@ object PeopleRepositoryImpl : PeopleRepository {
     init {
 
         for (i in 1..500) {
-            val people = People(genPeopleInfo(), Random.nextBoolean())
+            val people =
+                People(peopleInfo = genPeopleInfo(), hasWorkInCommand = Random.nextBoolean())
             addPeople(people)
         }
     }
@@ -40,10 +42,6 @@ object PeopleRepositoryImpl : PeopleRepository {
         updateList()
     }
 
-    override fun deletePeople(people: People) {
-        peopleList.remove(people)
-        updateList()
-    }
 
     override fun editPeople(people: People) {
         Log.d(

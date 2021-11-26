@@ -1,4 +1,4 @@
-package ru.shanin.commwork.data
+package ru.shanin.commwork.data.repositoryimpl
 
 object PeopleListRepositoryRoomImpl {
 
