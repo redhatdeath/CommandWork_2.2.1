@@ -1,4 +1,4 @@
-package ru.shanin.commwork.data.database
+package ru.shanin.commwork.data.database.people
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -12,12 +12,16 @@ interface RoomPeopleDao {
     @Query("SELECT * FROM people")
     fun getRoomPeopleEntityAll(): Flow<List<RoomPeopleEntity>>
 
-    @Query("SELECT * FROM people WHERE people_id IN (:peopleIds)")
-    fun getRoomPeopleEntityAllByIds(peopleIds: IntArray): List<RoomPeopleEntity>
-
     @Query("SELECT * FROM people WHERE people_id LIKE :peopleId LIMIT 1")
     fun getRoomPeopleEntityById(peopleId: Int): RoomPeopleEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRoomPeopleEntity(roomPeopleEntity: RoomPeopleEntity)
+
+    @Query("DELETE FROM people WHERE people_id LIKE :peopleId")
+    fun delete(peopleId: Int)
+
+
+    @Query("DELETE FROM people")
+    fun deleteAllUsers()
 }

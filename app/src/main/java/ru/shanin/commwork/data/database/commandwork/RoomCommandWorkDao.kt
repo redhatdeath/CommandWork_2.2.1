@@ -1,4 +1,4 @@
-package ru.shanin.commwork.data.database
+package ru.shanin.commwork.data.database.commandwork
 
 import androidx.room.Dao
 import androidx.room.Insert
