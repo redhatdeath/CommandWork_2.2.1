@@ -42,8 +42,8 @@ data class RoomCommandWorkEntity(
         const val DEFAULT_ROW_ID = 0
 
         const val NAME_TABLE = "work"
-
         const val COL_WORK_ROW_ID = "work_row_id"
+
         const val COL_COMMAND_WORK_NAME = "command_work_name"
         const val COL_PEOPLES = "peoples"
         const val COL_IS_START = "isStart"
