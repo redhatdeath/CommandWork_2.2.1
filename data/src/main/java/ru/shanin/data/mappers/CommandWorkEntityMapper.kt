@@ -1,34 +1,37 @@
 package ru.shanin.data.mappers
 
-import ru.shanin.data.entity.RoomCommandWorkEntity
-import ru.shanin.domain.entity.CommandWork
+import ru.shanin.data.entity.RoomWorkEntity
+import ru.shanin.domain.entity.Work
+import ru.shanin.domain.entity.WorkInfo
 
 
 class CommandWorkEntityMapper {
-    fun toRoomCommandWorkEntity(commandWork: CommandWork): RoomCommandWorkEntity {
-        return RoomCommandWorkEntity(
-            nameWork = commandWork.nameWork,
-            workListPeopleId = commandWork.workListPeopleId.joinToString { "," },
-            isCommandWorkStart = commandWork.isCommandWorkStart,
-            timeStart = commandWork.timeStart,
-            isCommandWorkFinish = commandWork.isCommandWorkFinish,
-            workTime = commandWork.workTime,
-            id = commandWork.id
+    fun toRoomWorkEntity(work: Work): RoomWorkEntity {
+        return RoomWorkEntity(
+            nameWork = work.nameWork,
+            workListPeopleId = work.workInfo.workListPeopleId.joinToString { "," },
+            isCommandWorkStart = work.workInfo.isCommandWorkStart,
+            timeStart = work.workInfo.timeStart,
+            isCommandWorkFinish = work.workInfo.isCommandWorkFinish,
+            workTime = work.workInfo.workTime,
+            id = work.id
         )
     }
 
-    fun toCommandWork(roomCommandWorkEntity: RoomCommandWorkEntity): CommandWork {
-        return CommandWork(
-            nameWork = roomCommandWorkEntity.nameWork,
-            workListPeopleId =
-            roomCommandWorkEntity.workListPeopleId
-                .split(",")
-                .filterNot { it.isBlank() }
-                .map { it.toInt() },
-            isCommandWorkStart = roomCommandWorkEntity.isCommandWorkStart,
-            timeStart = roomCommandWorkEntity.timeStart,
-            isCommandWorkFinish = roomCommandWorkEntity.isCommandWorkFinish,
-            workTime = roomCommandWorkEntity.workTime
+    fun toWork(roomWorkEntity: RoomWorkEntity): Work {
+        return Work(
+            nameWork = roomWorkEntity.nameWork,
+            workInfo = WorkInfo(
+                workListPeopleId = roomWorkEntity.workListPeopleId
+                    .split(",")
+                    .filterNot { it.isBlank() }
+                    .map { it.toInt() },
+                isCommandWorkStart = roomWorkEntity.isCommandWorkStart,
+                timeStart = roomWorkEntity.timeStart,
+                isCommandWorkFinish = roomWorkEntity.isCommandWorkFinish,
+                workTime = roomWorkEntity.workTime
+            ),
+            id = roomWorkEntity.id
         )
     }
 }

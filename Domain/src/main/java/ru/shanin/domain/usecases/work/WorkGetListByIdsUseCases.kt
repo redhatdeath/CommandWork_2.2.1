@@ -1,0 +1,13 @@
+package ru.shanin.domain.usecases.work
+
+import androidx.lifecycle.MutableLiveData
+import ru.shanin.domain.entity.Work
+import ru.shanin.domain.repository.WorkDataRepository
+
+class WorkGetListByIdsUseCases(
+    private val workDataRepository: WorkDataRepository
+) {
+    suspend fun workGetListByIds(workIds: IntArray): MutableLiveData<List<Work>> {
+        return workDataRepository.getListByIdsWork(workIds)
+    }
+}

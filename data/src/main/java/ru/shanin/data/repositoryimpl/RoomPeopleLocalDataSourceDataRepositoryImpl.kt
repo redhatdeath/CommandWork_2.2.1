@@ -4,16 +4,16 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import ru.shanin.data.database.people.RoomPeopleDao
-import ru.shanin.data.database.repository.RoomPeopleLocalDataSourceRepository
+import ru.shanin.data.database.dao.RoomPeopleDao
+import ru.shanin.data.database.repository.RoomPeopleLocalDataSourceDataRepository
 import ru.shanin.data.mappers.PeopleEntityMapper
 import ru.shanin.domain.entity.People
 
-class RoomPeopleLocalDataSourceRepositoryImpl(
+class RoomPeopleLocalDataSourceDataRepositoryImpl(
     private val roomPeopleDao: RoomPeopleDao,
     private val dispatcher: CoroutineDispatcher,
     private val peopleEntityMapper: PeopleEntityMapper
-) : RoomPeopleLocalDataSourceRepository {
+) : RoomPeopleLocalDataSourceDataRepository {
     override suspend fun getPeopleList(): Flow<List<People>> {
         val savedPeopleEntityFlow = roomPeopleDao.getRoomPeopleEntityAll()
         return savedPeopleEntityFlow.map { list ->

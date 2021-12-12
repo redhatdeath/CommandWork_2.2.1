@@ -1,4 +1,4 @@
-package ru.shanin.data.database.people
+package ru.shanin.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

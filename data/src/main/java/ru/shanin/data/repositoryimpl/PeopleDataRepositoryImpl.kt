@@ -4,11 +4,11 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import ru.shanin.commwork.data.genPeopleInfo
 import ru.shanin.domain.entity.People
-import ru.shanin.domain.repository.PeopleRepository
+import ru.shanin.domain.repository.PeopleDataRepository
 import kotlin.random.Random
 
 
-object PeopleRepositoryImpl : PeopleRepository {
+object PeopleDataRepositoryImpl : PeopleDataRepository {
 
     private val peopleListLiveData = MutableLiveData<List<People>>()
 
@@ -66,7 +66,7 @@ object PeopleRepositoryImpl : PeopleRepository {
         } ?: throw  RuntimeException("Element with id $peopleId not found")
     }
 
-    override fun getPeopleList(): MutableLiveData<List<People>> {
+    override suspend fun getPeopleList(): MutableLiveData<List<People>> {
         return peopleListLiveData
     }
 
