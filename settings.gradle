@@ -7,4 +7,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "CommandWork"
-include ':app'
+include ':Presentation'
+include ':Domain'
+include ':Data'
