@@ -1,10 +1,11 @@
-package ru.shanin.commwork.data.mappers
+package ru.shanin.data.mappers
 
-import ru.shanin.commwork.data.entity.RoomCommandWorkEntity
-import ru.shanin.domain.domain.entity.CommandWork
+import ru.shanin.data.entity.RoomCommandWorkEntity
+import ru.shanin.domain.entity.CommandWork
+
 
 class CommandWorkEntityMapper {
-    fun toRoomCommandWorkEntity(commandWork: ru.shanin.domain.domain.entity.CommandWork): RoomCommandWorkEntity {
+    fun toRoomCommandWorkEntity(commandWork: CommandWork): RoomCommandWorkEntity {
         return RoomCommandWorkEntity(
             nameWork = commandWork.nameWork,
             workListPeopleId = commandWork.workListPeopleId.joinToString { "," },
@@ -16,8 +17,8 @@ class CommandWorkEntityMapper {
         )
     }
 
-    fun toCommandWork(roomCommandWorkEntity: RoomCommandWorkEntity): ru.shanin.domain.domain.entity.CommandWork {
-        return ru.shanin.domain.domain.entity.CommandWork(
+    fun toCommandWork(roomCommandWorkEntity: RoomCommandWorkEntity): CommandWork {
+        return CommandWork(
             nameWork = roomCommandWorkEntity.nameWork,
             workListPeopleId =
             roomCommandWorkEntity.workListPeopleId

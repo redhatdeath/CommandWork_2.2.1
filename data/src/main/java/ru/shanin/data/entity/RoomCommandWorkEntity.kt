@@ -1,17 +1,21 @@
-package ru.shanin.commwork.data.entity
+package ru.shanin.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import ru.shanin.commwork.data.entity.RoomCommandWorkEntity.Companion.NAME_TABLE
-import ru.shanin.domain.domain.entity.CommandWork
+import ru.shanin.data.entity.RoomCommandWorkEntity.Companion.NAME_TABLE
+import ru.shanin.domain.entity.CommandWork
+
 
 @Entity(
     tableName = NAME_TABLE,
-    indices = [Index(value = ["command_work_id"], unique = true)]
+    indices = [
+        Index(value = ["command_work_id"], unique = true)
+    ]
 )
 data class RoomCommandWorkEntity(
+
     @ColumnInfo(name = COL_COMMAND_WORK_NAME)
     val nameWork: String,
 
@@ -28,20 +32,21 @@ data class RoomCommandWorkEntity(
     var isCommandWorkFinish: Boolean,
 
     @ColumnInfo(name = COL_TIME_WORK)
-    var workTime: Int = ru.shanin.domain.domain.entity.CommandWork.TIME_BY_DEFAULT,
+    var workTime: Int = CommandWork.TIME_BY_DEFAULT,
 
     @ColumnInfo(name = COL_COMMAND_WORK_ID)
     val id: Int,
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = COL_WORK_ROW_ID)
-    var row_id: Int = DEFAULT_ROW_ID,
+    var row_id: Int = DEFAULT_ROW_ID
 
-    ) {
+) {
     companion object {
-        const val DEFAULT_ROW_ID = 0
+        const val DEFAULT_ROW_ID = -1
 
         const val NAME_TABLE = "work"
+
         const val COL_WORK_ROW_ID = "work_row_id"
 
         const val COL_COMMAND_WORK_NAME = "command_work_name"

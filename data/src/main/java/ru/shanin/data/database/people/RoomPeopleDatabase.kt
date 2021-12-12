@@ -1,20 +1,24 @@
-package ru.shanin.commwork.data.database.people
+package ru.shanin.data.database.people
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import ru.shanin.commwork.data.database.Converters
-import ru.shanin.commwork.data.entity.RoomPeopleEntity
+import ru.shanin.data.database.people.RoomPeopleDatabase.Companion.DATABASE_VERSION
+import ru.shanin.data.entity.RoomPeopleEntity
 
-@Database(entities = [RoomPeopleEntity::class], version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
+@Database(
+    entities = [RoomPeopleEntity::class],
+    version = DATABASE_VERSION,
+    exportSchema = false
+)
 abstract class RoomPeopleDatabase() : RoomDatabase() {
     abstract fun roomPeopleDao(): RoomPeopleDao
 
-
     companion object {
+
+        const val DATABASE_VERSION = 1
+
         @Volatile
         private var INSTANCE: RoomPeopleDatabase? = null
 

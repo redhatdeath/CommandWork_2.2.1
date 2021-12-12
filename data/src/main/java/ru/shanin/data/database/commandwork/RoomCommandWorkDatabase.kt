@@ -1,19 +1,24 @@
-package ru.shanin.commwork.data.database.commandwork
+package ru.shanin.data.database.commandwork
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import ru.shanin.commwork.data.database.Converters
-import ru.shanin.commwork.data.entity.RoomCommandWorkEntity
+import ru.shanin.data.database.commandwork.RoomCommandWorkDatabase.Companion.DATABASE_VERSION
+import ru.shanin.data.entity.RoomCommandWorkEntity
 
-@Database(entities = [RoomCommandWorkEntity::class], version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
+@Database(
+    entities = [RoomCommandWorkEntity::class],
+    version = DATABASE_VERSION,
+    exportSchema = false
+)
 abstract class RoomCommandWorkDatabase : RoomDatabase() {
     abstract fun roomCommandWorkDao(): RoomCommandWorkDao
 
     companion object {
+
+        const val DATABASE_VERSION = 1
+
         @Volatile
         private var INSTANCE: RoomCommandWorkDatabase? = null
 

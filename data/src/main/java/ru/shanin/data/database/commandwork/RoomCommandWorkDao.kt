@@ -1,10 +1,10 @@
-package ru.shanin.commwork.data.database.commandwork
+package ru.shanin.data.database.commandwork
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
-import ru.shanin.commwork.data.entity.RoomCommandWorkEntity
+import ru.shanin.data.entity.RoomCommandWorkEntity
 
 @Dao
 interface RoomCommandWorkDao {

@@ -1,11 +1,9 @@
-package ru.shanin.commwork.data.mappers
+package ru.shanin.data.mappers
 
-import ru.shanin.commwork.data.entity.RoomPeopleEntity
-import ru.shanin.domain.domain.entity.People
-import ru.shanin.domain.domain.entity.PeopleInfo
+import ru.shanin.data.entity.RoomPeopleEntity
 
 class PeopleEntityMapper {
-    fun toRoomPeopleEntity(people: ru.shanin.domain.domain.entity.People): RoomPeopleEntity {
+    fun toRoomPeopleEntity(people: ru.shanin.domain.entity.People): RoomPeopleEntity {
         return RoomPeopleEntity(
             peopleId = people.id,
             firstName = people.peopleInfo.firstName,
@@ -18,9 +16,9 @@ class PeopleEntityMapper {
         )
     }
 
-    fun toPeople(roomPeopleEntity: RoomPeopleEntity): ru.shanin.domain.domain.entity.People {
-        return ru.shanin.domain.domain.entity.People(
-            peopleInfo = ru.shanin.domain.domain.entity.PeopleInfo(
+    fun toPeople(roomPeopleEntity: RoomPeopleEntity): ru.shanin.domain.entity.People {
+        return ru.shanin.domain.entity.People(
+            peopleInfo = ru.shanin.domain.entity.PeopleInfo(
                 roomPeopleEntity.firstName,
                 roomPeopleEntity.secondName,
                 roomPeopleEntity.phone,

@@ -1,11 +1,11 @@
-package ru.shanin.commwork.data.database.people
+package ru.shanin.data.database.people
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
-import ru.shanin.commwork.data.entity.RoomPeopleEntity
+import ru.shanin.data.entity.RoomPeopleEntity
 
 @Dao
 interface RoomPeopleDao {
