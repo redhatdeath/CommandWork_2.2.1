@@ -1,18 +1,18 @@
-package ru.shanin.commwork.data.repositoryimpl
+package ru.shanin.data.repositoryimpl
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import ru.shanin.commwork.data.genPeopleInfo
-import ru.shanin.domain.domain.entity.People
-import ru.shanin.domain.domain.repository.PeopleRepository
+import ru.shanin.domain.entity.People
+import ru.shanin.domain.repository.PeopleRepository
 import kotlin.random.Random
 
 
-object PeopleRepositoryImpl : ru.shanin.domain.domain.repository.PeopleRepository {
+object PeopleRepositoryImpl : PeopleRepository {
 
-    private val peopleListLiveData = MutableLiveData<List<ru.shanin.domain.domain.entity.People>>()
+    private val peopleListLiveData = MutableLiveData<List<People>>()
 
-    private var peopleList = sortedSetOf<ru.shanin.domain.domain.entity.People>(
+    private var peopleList = sortedSetOf<People>(
         { p1, p2 ->
             val a = p1.peopleInfo.firstName.compareTo(p2.peopleInfo.firstName)
             val b = p1.peopleInfo.secondName.compareTo(p2.peopleInfo.secondName)
@@ -29,7 +29,7 @@ object PeopleRepositoryImpl : ru.shanin.domain.domain.repository.PeopleRepositor
 
         for (i in 1..500) {
             val people =
-                ru.shanin.domain.domain.entity.People(
+                People(
                     peopleInfo = genPeopleInfo(),
                     hasWorkInCommand = Random.nextBoolean()
                 )
@@ -38,15 +38,15 @@ object PeopleRepositoryImpl : ru.shanin.domain.domain.repository.PeopleRepositor
     }
 
 
-    override fun addPeople(people: ru.shanin.domain.domain.entity.People) {
-        if (people.id == ru.shanin.domain.domain.entity.People.UNDEFINED_ID)
+    override fun addPeople(people: People) {
+        if (people.id == People.UNDEFINED_ID)
             people.id = autoIncrementId++
         peopleList.add(people)
         updateList()
     }
 
 
-    override fun editPeople(people: ru.shanin.domain.domain.entity.People) {
+    override fun editPeople(people: People) {
         Log.d(
             "PeopleInfoViewModel",
             "edit people PeopleListRepositoryImpl = $people"
@@ -60,13 +60,13 @@ object PeopleRepositoryImpl : ru.shanin.domain.domain.repository.PeopleRepositor
         addPeople(people)
     }
 
-    override fun getPeople(peopleId: Int): ru.shanin.domain.domain.entity.People {
+    override fun getPeople(peopleId: Int): People {
         return peopleList.find {
             it.id == peopleId
         } ?: throw  RuntimeException("Element with id $peopleId not found")
     }
 
-    override fun getPeopleList(): MutableLiveData<List<ru.shanin.domain.domain.entity.People>> {
+    override fun getPeopleList(): MutableLiveData<List<People>> {
         return peopleListLiveData
     }
 
